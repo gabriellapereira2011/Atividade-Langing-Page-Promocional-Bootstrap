@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../portifolio-gabi"
+		},
+		{
+			"path": "../gabriella"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "gabriella"
+	}
+}

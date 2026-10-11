@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevAcademy x Coca-Cola | A Fórmula Secreta do Front-End</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --coca-red: #E61C24;
+            --coca-dark-red: #9B0B11;
+            --dark-bg: #0d0e12;
+            --card-bg: #16181f;
+            --text-glow: rgba(230, 28, 36, 0.4);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: #f8f9fa;
+        }
+
+        /* Navbar customizada */
+        .navbar-brand span {
+            color: var(--coca-red);
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            color: var(--coca-red) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: radial-gradient(circle at top right, rgba(230, 28, 36, 0.25), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(155, 11, 17, 0.15), transparent 50%);
+            padding: 100px 0 80px;
+        }
+
+        .badge-promo {
+            background-color: rgba(230, 28, 36, 0.15);
+            color: var(--coca-red);
+            border: 1px solid var(--coca-red);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .btn-coca {
+            background-color: var(--coca-red);
+            color: white;
+            font-weight: 700;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            box-shadow: 0 4px 20px var(--text-glow);
+            transition: all 0.3s ease;
+        }
+
+        .btn-coca:hover {
+            background-color: #ff2b33;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(230, 28, 36, 0.6);
+        }
+
+        /* IDE Mockup */
+        .ide-card {
+            background: #1e1e24;
+            border: 1px solid #333;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+
+        .ide-header {
+            background: #141418;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        .ide-body {
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            color: #d4d4d4;
+            font-size: 0.95rem;
+        }
+
+        .code-keyword { color: #569cd6; }
+        .code-string { color: #ce9178; }
+        .code-tag { color: #569cd6; }
+        .code-attr { color: #9cdcfe; }
+
+        /* Feature Cards */
+        .feature-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--coca-red);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(230, 28, 36, 0.1);
+            color: var(--coca-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        /* Banner Bônus */
+        .bonus-banner {
+            background: linear-gradient(135deg, var(--coca-red) 0%, var(--coca-dark-red) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(230, 28, 36, 0.3);
+        }
+
+        /* Accordion */
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(230, 28, 36, 0.1);
+            color: var(--coca-red);
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: var(--coca-red);
+        }
+
+        /* Form Card */
+        .form-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--coca-red);
+            box-shadow: 0 0 0 0.25rem rgba(230, 28, 36, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-secondary-subtle">
+        <div class="container">
+            <a class="navbar-brand fs-4 fw-bold" href="#">
+                <i class="bi bi-code-slash text-danger me-2"></i>Dev<span>Academy</span> <span class="badge bg-danger fs-6 align-middle ms-1">x Coca-Cola</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#diferenciais">Diferenciais</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#modulos">Módulos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bonus">Bônus Secreto</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a class="btn btn-coca btn-sm px-4" href="#inscricao">Garantir Vaga</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-lg-start text-center">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span class="badge badge-promo px-3 py-2 rounded-pill mb-3">
+                        <i class="bi bi-fire me-1"></i> MENTORIA EXCLUSIVA COD3-7X
+                    </span>
+                    <h1 class="display-4 fw-extrabold mb-4">
+                        Descubra a <span class="text-danger">Fórmula Secreta</span> do Desenvolvimento Web
+                    </h1>
+                    <p class="lead text-secondary mb-4">
+                        Aprenda HTML5, CSS3, JavaScript e Bootstrap 5 na prática. Uma metodologia refrescante e direto ao ponto para você dominar o mercado Front-End.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+                        <a href="#inscricao" class="btn btn-coca btn-lg">
+                            Desbloquear Acesso <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                        <a href="#modulos" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                            Ver Conteúdo
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ide-card">
+                        <div class="ide-header">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                            <small class="text-muted ms-2">formula_secreta.js — DevAcademy</small>
+                        </div>
+                        <div class="ide-body">
+<pre class="m-0"><code><span class="code-keyword">const</span> devAcademy = {
+  <span class="code-attr">tecnologias</span>: [<span class="code-string">'HTML5'</span>, <span class="code-string">'CSS3'</span>, <span class="code-string">'Bootstrap 5'</span>],
+  <span class="code-attr">codigoSecreto</span>: <span class="code-string">'MERCHANDISE-7X'</span>,
+  <span class="code-attr">metodologia</span>: <span class="code-string">'Aprenda Construindo'</span>,
+  <span class="code-attr">status</span>: <span class="code-string">'Pronto para o Mercado'</span>,
+  
+  <span class="code-keyword">saborDoSucesso</span>: <span class="code-keyword">function</span>() {
+    <span class="code-keyword">return</span> <span class="code-string">'100% Prático + Experiência Real'</span>;
+  }
+};
+
+<span class="code-keyword">console</span>.log(devAcademy.<span class="code-attr">saborDoSucesso</span>());</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section id="diferenciais" class="py-5">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Por que a DevAcademy é Diferente?</h2>
+                <p class="text-secondary">Os ingredientes exatos para transformar você em um desenvolvedor profissional.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card h-100">
+                        <div class="icon-box">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <h4>Projetos Reais</h4>
+                        <p class="text-secondary mb-0">Construa sistemas e landing pages completas utilizando as tecnologias mais requisitadas pelas empresas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card h-100">
+                        <div class="icon-box">
+                            <i class="bi bi-bootstrap"></i>
+                        </div>
+                        <h4>Ecossistema Bootstrap 5</h4>
+                        <p class="text-secondary mb-0">Domine utilitários, grid flexível e componentes responsivos do Bootstrap para acelerar suas entregas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card h-100">
+                        <div class="icon-box">
+                            <i class="bi bi-person-workspace"></i>
+                        </div>
+                        <h4>Mentoria Direcionada</h4>
+                        <p class="text-secondary mb-0">Acompanhamento individualizado de código para você destravar em cada etapa dos seus projetos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Módulos do Curso -->
+    <section id="modulos" class="py-5 bg-black bg-opacity-25">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Grade Curricular do Curso</h2>
+                <p class="text-secondary">Do zero ao deploy com a qualidade e padrão internacional.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion accordion-flush" id="accordionModulos">
+                        <!-- Módulo 1 -->
+                        <div class="accordion-item bg-dark text-white border-secondary mb-3 rounded overflow-hidden">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button bg-dark text-white fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mod1">
+                                    Módulo 1: Estruturação Semântica com HTML5
+                                </button>
+                            </h2>
+                            <div id="mod1" class="accordion-collapse collapse" data-bs-parent="#accordionModulos">
+                                <div class="accordion-body text-secondary">
+                                    Aprenda as melhores práticas de SEO, acessibilidade, tags semânticas, formulários modernos e organização correta de documento Web.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Módulo 2 -->
+                        <div class="accordion-item bg-dark text-white border-secondary mb-3 rounded overflow-hidden">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button bg-dark text-white fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mod2">
+                                    Módulo 2: Estilização Avançada com CSS3
+                                </button>
+                            </h2>
+                            <div id="mod2" class="accordion-collapse collapse" data-bs-parent="#accordionModulos">
+                                <div class="accordion-body text-secondary">
+                                    Flexbox, CSS Grid Layout, Variáveis CSS, Animações e Transições responsivas para criar layouts atraentes e fluidos.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Módulo 3 -->
+                        <div class="accordion-item bg-dark text-white border-secondary mb-3 rounded overflow-hidden">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button bg-dark text-white fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mod3">
+                                    Módulo 3: Agilidade com Bootstrap 5
+                                </button>
+                            </h2>
+                            <div id="mod3" class="accordion-collapse collapse" data-bs-parent="#accordionModulos">
+                                <div class="accordion-body text-secondary">
+                                    Grid System de 12 colunas, componentes interativos, estilização por utilitários e personalização de temas.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Bônus Coca-Cola -->
+    <section id="bonus" class="py-5">
+        <div class="container py-3">
+            <div class="bonus-banner text-white">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-8">
+                        <span class="badge bg-white text-danger fw-bold mb-2">BÔNUS EXCLUSIVO</span>
+                        <h3 class="display-6 fw-bold mb-3">Combo Dev & Refresco!</h3>
+                        <p class="fs-5 mb-0">
+                            Ao se matricular nesta edição da mentoria, você ganha <strong>1 ano de suprimento Coca-Cola Zero</strong> para manter a energia nos seus momentos de código!
+                        </p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end text-center">
+                        <i class="bi bi-gift-fill display-1 opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulário de Inscrição -->
+    <section id="inscricao" class="py-5">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="form-card">
+                        <div class="text-center mb-4">
+                            <h3 class="fw-bold">Garanta sua Vaga na Mentoria</h3>
+                            <p class="text-secondary">Preencha seus dados para receber o cupom promocional e o acesso imediato.</p>
+                        </div>
+
+                        <div id="alertSuccess" class="alert alert-success d-none" role="alert">
+                            <i class="bi bi-check-circle-fill me-2"></i> Inscrição realizada com sucesso! Verifique seu e-mail.
+                        </div>
+
+                        <form id="subscribeForm">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome Completo</label>
+                                <input type="text" class="form-control form-control-lg bg-dark text-white border-secondary" id="nome" placeholder="Digite seu nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-mail Principal</label>
+                                <input type="email" class="form-control form-control-lg bg-dark text-white border-secondary" id="email" placeholder="seuemail@exemplo.com" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="nivel" class="form-label">Qual o seu nível atual em programação?</label>
+                                <select class="form-select form-select-lg bg-dark text-white border-secondary" id="nivel">
+                                    <option value="iniciante">Iniciante (Nunca programei)</option>
+                                    <option value="basico">Básico (Conheço o básico de HTML/CSS)</option>
+                                    <option value="intermediario">Intermediário (Querendo migrar para o mercado)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-coca btn-lg w-100 py-3">
+                                Inscrever-se Agora
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="py-4 border-top border-secondary-subtle bg-black text-center text-secondary">
+        <div class="container">
+            <p class="mb-1">© 2026 DevAcademy x Coca-Cola. Todos os direitos reservados.</p>
+            <small>Desenvolvido com HTML5, CSS3 e Bootstrap 5.</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle (com Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script de Interação -->
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simula o envio
+            const alertBox = document.getElementById('alertSuccess');
+            alertBox.classList.remove('d-none');
+            
+            // Limpa os campos
+            this.reset();
+
+            // Rola suavemente até o alerta
+            alertBox.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
